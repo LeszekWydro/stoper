@@ -6,28 +6,28 @@ import Container from './Container/Container.js';
 const App = () => {
 
 const [time, setTime] = useState(0)
-const [timeStart, setStartTime] = useState(false)
+const [startTime, setStartTime] = useState(false)
 
 useEffect(() => {
 
   let interval = null;
 
-    if (timeStart) {
+    if (startTime) {
       interval = setInterval(() => {
         setTime(prevTime => prevTime + 10)
       }, 10)
-    } else {
+    } else if (startTime){
       clearInterval(interval)
     }
     return () => clearInterval(interval)
 
-  }, [timeStart])
+  }, [startTime])
 
 
 return (
     <Container>
       <Timer time = {time}/>
-      <Button setTime = {setTime} setTimeStart = {setStartTime} />
+      <Button setTime = {setTime} setStartTime = {setStartTime} />
     </Container>
   );
 }
